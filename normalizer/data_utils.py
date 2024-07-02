@@ -41,6 +41,7 @@ def load_data(args):
     dataset = load_dataset(
         args.dataset_path,
         args.dataset,
+        revision="refs/pr/1",
         split=args.split,
         streaming=args.streaming,
         token=True,

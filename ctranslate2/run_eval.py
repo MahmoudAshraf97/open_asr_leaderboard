@@ -3,7 +3,7 @@ import argparse
 import os
 
 import evaluate
-from faster_whisper import WhisperModel
+from faster_whisper import WhisperModel, BatchedInferencePipeline
 from tqdm import tqdm
 
 from normalizer import data_utils
@@ -33,6 +33,7 @@ def main(args) -> None:
         device="cuda",
         device_index=args.device
     )
+    batched_pipeline = BatchedInferencePipeline(asr_model, device="cuda")
 
     dataset = data_utils.load_data(args)
 
@@ -47,7 +48,7 @@ def main(args) -> None:
 
     # Run inference
     for batch in tqdm(dataset_iterator(dataset), desc=f"Evaluating {args.model_id}"):
-        segments, _ = asr_model.transcribe(batch["array"], language="en")
+        segments, _ = batched_pipeline.transcribe(batch["array"].astype("float32"), language="en", batch_size=args.batch_size)
         outputs = [segment._asdict() for segment in segments]
         predictions.extend(
             data_utils.normalizer(

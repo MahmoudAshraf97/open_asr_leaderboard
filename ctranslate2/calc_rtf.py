@@ -7,12 +7,12 @@ device = "cuda"
 device_index = 0
 
 models = [
-    "guillaumekln/faster-whisper-tiny.en",
-    "guillaumekln/faster-whisper-small.en",
-    "guillaumekln/faster-whisper-base.en",
-    "guillaumekln/faster-whisper-medium.en",
-    "guillaumekln/faster-whisper-large-v1",
-    "guillaumekln/faster-whisper-large-v2",
+    "systran/faster-whisper-tiny.en",
+    "systran/faster-whisper-small.en",
+    "systran/faster-whisper-base.en",
+    "systran/faster-whisper-medium.en",
+    "systran/faster-whisper-large-v1",
+    "systran/faster-whisper-large-v2",
 ]
 
 n_batches = 3
