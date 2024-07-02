@@ -43,8 +43,9 @@ def load_data(args):
         args.dataset,
         revision="refs/pr/1",
         split=args.split,
-        streaming=args.streaming,
+        streaming=False,
         token=True,
+        trust_remote_code=True,
     )
 
     return dataset
